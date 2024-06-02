@@ -1,4 +1,4 @@
-MPASM  5.50                       COUNTER.ASM   5-31-2024  21:54:36         PAGE  1
+MPASM  5.50                       COUNTER.ASM   6-2-2024  3:19:36         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -41,61 +41,76 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
 000F   2014           00023     CALL    increment
                       00024 
 0010   1885           00025     BTFSC   PORTA, 1          ; Check if RA1 is pressed
-0011   2017           00026     CALL    decrement
+0011   201C           00026     CALL    decrement
                       00027 
-0012   2023           00028     CALL    display           ; Display counter value on 7-segment
+0012   202F           00028     CALL    display           ; Display counter value on 7-segment
                       00029 
 0013   280E           00030     GOTO    check_switches    ; Loop
                       00031 
 0014                  00032 increment:
 0014   0AA0           00033     INCF    0x20, F           ; Increment counter value
-0015   201A           00034     CALL    delay             ; Wait for 250ms (Debounce)
-0016   0008           00035     RETURN
-                      00036 
-0017                  00037 decrement:
-0017   03A0           00038     DECF    0x20, F           ; Decrement counter value
-0018   201A           00039     CALL    delay             ; Wait for 250ms (Debounce)
-0019   0008           00040     RETURN
-                      00041 
-MPASM  5.50                       COUNTER.ASM   5-31-2024  21:54:36         PAGE  2
+0015   0820           00034     MOVF    0x20, W
+0016   3A0A           00035     XORLW   0x0A              ; Check if counter value equals 10
+0017   1D03           00036     BTFSS   STATUS, Z
+0018   281A           00037     GOTO    skip_reset        ; If not, skip resetting to 0
+0019   01A0           00038     CLRF    0x20              ; If yes, reset counter value to 0
+001A                  00039 skip_reset:
+001A   2026           00040     CALL    delay             ; Wait for 250ms (Debounce)
+001B   0008           00041     RETURN
+MPASM  5.50                       COUNTER.ASM   6-2-2024  3:19:36         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-001A                  00042 delay:
-001A   30FF           00043     MOVLW   0xFF
-001B   00A1           00044     MOVWF   0x21
-001C   30FF           00045     MOVLW   0xFF
-001D   00A2           00046     MOVWF   0x22
-001E                  00047 d1:
-001E   0BA1           00048     DECFSZ  0x21, F
-001F   281E           00049     GOTO    d1
-0020   0BA2           00050     DECFSZ  0x22, F
-0021   281E           00051     GOTO    d1
-0022   0008           00052     RETURN
-                      00053 
-0023                  00054 display:
-0023   0820           00055     MOVF    0x20, W
-0024   2027           00056     CALL    seg_decode
-0025   0086           00057     MOVWF   PORTB
-0026   0008           00058     RETURN
-                      00059 
-0027                  00060 seg_decode:
-0027   0782           00061     ADDWF   PCL, F
-0028   343F           00062     RETLW   b'00111111'      ; 0
-0029   3406           00063     RETLW   b'00000110'      ; 1
-002A   345B           00064     RETLW   b'01011011'      ; 2
-002B   344F           00065     RETLW   b'01001111'      ; 3
-002C   3466           00066     RETLW   b'01100110'      ; 4
-002D   346D           00067     RETLW   b'01101101'      ; 5
-002E   347D           00068     RETLW   b'01111101'      ; 6
-002F   3407           00069     RETLW   b'00000111'      ; 7
-0030   347F           00070     RETLW   b'01111111'      ; 8
-0031   346F           00071     RETLW   b'01101111'      ; 9
-                      00072 
-                      00073     END
-MPASM  5.50                       COUNTER.ASM   5-31-2024  21:54:36         PAGE  3
+                      00042 
+001C                  00043 decrement:
+001C   0820           00044     MOVF    0x20, W
+001D   3800           00045     IORLW   0x00              ; Check if counter value equals 0
+001E   1D03           00046     BTFSS   STATUS, Z
+001F   2823           00047     GOTO    skip_set_to_9     ; If not, skip setting to 9
+0020   3009           00048     MOVLW   0x09
+0021   00A0           00049     MOVWF   0x20              ; If yes, set counter value to 9
+0022   2824           00050     GOTO    skip_decrement
+0023                  00051 skip_set_to_9:
+0023   03A0           00052     DECF    0x20, F           ; Decrement counter value
+0024                  00053 skip_decrement:
+0024   2026           00054     CALL    delay             ; Wait for 250ms (Debounce)
+0025   0008           00055     RETURN
+                      00056 
+0026                  00057 delay:
+0026   30FF           00058     MOVLW   0xFF
+0027   00A1           00059     MOVWF   0x21
+0028   30FF           00060     MOVLW   0xFF
+0029   00A2           00061     MOVWF   0x22
+002A                  00062 d1:
+002A   0BA1           00063     DECFSZ  0x21, F
+002B   282A           00064     GOTO    d1
+002C   0BA2           00065     DECFSZ  0x22, F
+002D   282A           00066     GOTO    d1
+002E   0008           00067     RETURN
+                      00068 
+002F                  00069 display:
+002F   0820           00070     MOVF    0x20, W
+0030   2033           00071     CALL    seg_decode
+0031   0086           00072     MOVWF   PORTB
+0032   0008           00073     RETURN
+                      00074 
+0033                  00075 seg_decode:
+0033   0782           00076     ADDWF   PCL, F
+0034   343F           00077     RETLW   b'00111111'      ; 0
+0035   3406           00078     RETLW   b'00000110'      ; 1
+0036   345B           00079     RETLW   b'01011011'      ; 2
+0037   344F           00080     RETLW   b'01001111'      ; 3
+0038   3466           00081     RETLW   b'01100110'      ; 4
+0039   346D           00082     RETLW   b'01101101'      ; 5
+003A   347D           00083     RETLW   b'01111101'      ; 6
+003B   3407           00084     RETLW   b'00000111'      ; 7
+003C   347F           00085     RETLW   b'01111111'      ; 8
+003D   346F           00086     RETLW   b'01101111'      ; 9
+                      00087 
+                      00088     END
+MPASM  5.50                       COUNTER.ASM   6-2-2024  3:19:36         PAGE  3
 
 
 SYMBOL TABLE
@@ -154,7 +169,7 @@ NOT_BOD                           00000000
 NOT_BOR                           00000000
 NOT_PD                            00000003
 NOT_POR                           00000001
-MPASM  5.50                       COUNTER.ASM   5-31-2024  21:54:36         PAGE  4
+MPASM  5.50                       COUNTER.ASM   6-2-2024  3:19:36         PAGE  4
 
 
 SYMBOL TABLE
@@ -213,7 +228,7 @@ STATUS                            00000003
 SYNC                              00000004
 T0CS                              00000005
 T0IE                              00000005
-MPASM  5.50                       COUNTER.ASM   5-31-2024  21:54:36         PAGE  5
+MPASM  5.50                       COUNTER.ASM   6-2-2024  3:19:36         PAGE  5
 
 
 SYMBOL TABLE
@@ -272,7 +287,7 @@ TXIE                              00000004
 TXIF                              00000004
 TXREG                             00000019
 TXSTA                             00000098
-MPASM  5.50                       COUNTER.ASM   5-31-2024  21:54:36         PAGE  6
+MPASM  5.50                       COUNTER.ASM   6-2-2024  3:19:36         PAGE  6
 
 
 SYMBOL TABLE
@@ -331,7 +346,7 @@ _PWRTE_ON                         00003FF7
 _RC_OSC_CLKOUT                    00003FFF
 _RC_OSC_NOCLKOUT                  00003FFE
 _WDTE_OFF                         00003FFB
-MPASM  5.50                       COUNTER.ASM   5-31-2024  21:54:36         PAGE  7
+MPASM  5.50                       COUNTER.ASM   6-2-2024  3:19:36         PAGE  7
 
 
 SYMBOL TABLE
@@ -344,23 +359,26 @@ _XT_OSC                           00003FED
 __16F627A                         00000001
 __DEBUG                           1
 check_switches                    0000000E
-d1                                0000001E
-decrement                         00000017
-delay                             0000001A
-display                           00000023
+d1                                0000002A
+decrement                         0000001C
+delay                             00000026
+display                           0000002F
 increment                         00000014
 main                              00000005
-seg_decode                        00000027
+seg_decode                        00000033
+skip_decrement                    00000024
+skip_reset                        0000001A
+skip_set_to_9                     00000023
 
 
 MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
 
-0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XX--------------
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXX--
 
 All other memory blocks unused.
 
-Program Memory Words Used:    47
-Program Memory Words Free:   977
+Program Memory Words Used:    59
+Program Memory Words Free:   965
 
 
 Errors   :     0

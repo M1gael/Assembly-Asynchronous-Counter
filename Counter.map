@@ -1,12 +1,12 @@
 MPLINK 4.48, Linker
-Linker Map File - Created Fri May 31 21:54:37 2024
+Linker Map File - Created Sun Jun 02 03:19:36 2024
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
                    .org_0       code   0x000000    program   0x000000
                    .org_1       code   0x000000    program   0x000002
-                   .org_2       code   0x000004    program   0x00005c
+                   .org_2       code   0x000004    program   0x000074
 
 
 
@@ -14,35 +14,41 @@ Linker Map File - Created Fri May 31 21:54:37 2024
                                Start         End      
                            ---------   ---------      
                             0x000000    0x000000      
-                            0x000004    0x000031      
-            47 out of 1158 program addresses used, program memory utilization is 4%
+                            0x000004    0x00003d      
+            59 out of 1158 program addresses used, program memory utilization is 5%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-           check_switches   0x00000e    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                       d1   0x00001e    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                decrement   0x000017    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                    delay   0x00001a    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                  display   0x000023    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                increment   0x000014    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                     main   0x000005    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-               seg_decode   0x000027    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
+           check_switches   0x00000e    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                       d1   0x00002a    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                decrement   0x00001c    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                    delay   0x000026    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                  display   0x00002f    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                increment   0x000014    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                     main   0x000005    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+               seg_decode   0x000033    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+           skip_decrement   0x000024    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+               skip_reset   0x00001a    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+            skip_set_to_9   0x000023    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
 
 
 
                               Symbols - Sorted by Address
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                     main   0x000005    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-           check_switches   0x00000e    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                increment   0x000014    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                decrement   0x000017    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                    delay   0x00001a    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                       d1   0x00001e    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-                  display   0x000023    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
-               seg_decode   0x000027    program     static C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.asm
+                     main   0x000005    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+           check_switches   0x00000e    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                increment   0x000014    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+               skip_reset   0x00001a    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                decrement   0x00001c    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+            skip_set_to_9   0x000023    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+           skip_decrement   0x000024    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                    delay   0x000026    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                       d1   0x00002a    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+                  display   0x00002f    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
+               seg_decode   0x000033    program     static C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.asm
 
 

@@ -31,11 +31,26 @@ check_switches:
 
 increment:
     INCF    0x20, F           ; Increment counter value
+    MOVF    0x20, W
+    XORLW   0x0A              ; Check if counter value equals 10
+    BTFSS   STATUS, Z
+    GOTO    skip_reset        ; If not, skip resetting to 0
+    CLRF    0x20              ; If yes, reset counter value to 0
+skip_reset:
     CALL    delay             ; Wait for 250ms (Debounce)
     RETURN
 
 decrement:
+    MOVF    0x20, W
+    IORLW   0x00              ; Check if counter value equals 0
+    BTFSS   STATUS, Z
+    GOTO    skip_set_to_9     ; If not, skip setting to 9
+    MOVLW   0x09
+    MOVWF   0x20              ; If yes, set counter value to 9
+    GOTO    skip_decrement
+skip_set_to_9:
     DECF    0x20, F           ; Decrement counter value
+skip_decrement:
     CALL    delay             ; Wait for 250ms (Debounce)
     RETURN
 

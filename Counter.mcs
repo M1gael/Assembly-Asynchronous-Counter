@@ -2,7 +2,7 @@
 MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
 Version=1.0
 [File000]
-Location=C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.o
+Location=C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.o
 Folder=Intermediary
 DeviceName=PIC16F627A
 LanguageToolSuiteID={6B3DAA78-59C1-46DD-B6AA-DBDAE4E06484}
@@ -15,7 +15,7 @@ ToolArgsString=
 TraceCmdString=
 DebugOptions=/d__DEBUG=1
 [File001]
-Location=C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.err
+Location=C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.err
 Folder=Intermediary
 DeviceName=PIC16F627A
 LanguageToolSuiteID={6B3DAA78-59C1-46DD-B6AA-DBDAE4E06484}
@@ -28,7 +28,7 @@ ToolArgsString=
 TraceCmdString=
 DebugOptions=/d__DEBUG=1
 [File002]
-Location=C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.hex
+Location=C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.hex
 Folder=Output
 DeviceName=PIC16F627A
 LanguageToolSuiteID={6B3DAA78-59C1-46DD-B6AA-DBDAE4E06484}
@@ -41,7 +41,7 @@ ToolArgsString=
 TraceCmdString=
 DebugOptions=/d__DEBUG=1
 [File003]
-Location=C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.lst
+Location=C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.lst
 Folder=Output
 DeviceName=PIC16F627A
 LanguageToolSuiteID={6B3DAA78-59C1-46DD-B6AA-DBDAE4E06484}
@@ -54,7 +54,7 @@ ToolArgsString=
 TraceCmdString=
 DebugOptions=/d__DEBUG=1
 [File004]
-Location=C:\Users\Work\Desktop\PIC16F-Asyncronus-Counter\Counter.cof
+Location=C:\Users\Work\Documents\GitDir\Assembly-Asynchronous-Counter\Counter.cof
 Folder=Output
 DeviceName=PIC16F627A
 LanguageToolSuiteID={6B3DAA78-59C1-46DD-B6AA-DBDAE4E06484}
